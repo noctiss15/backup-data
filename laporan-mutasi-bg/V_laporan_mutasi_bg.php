@@ -110,6 +110,7 @@
                                                     <th> No </th>
                                                     <th> No BG</th>
                                                     <th> Keterangan </th>
+                                                    <th> Tanggal BG </th>
                                                     <th> Nama Bank </th>
                                                     <th> No Perkiraan </th>
                                                     <th> Penerimaan </th>
@@ -246,6 +247,7 @@
                       {"data": "no","orderable": false,"searchable": false,  "className": "text-center", "width": "5%"},
                       {"data": "bukti_bgcek_nomor"},
                       {"data": "bukti_bgcek_catatan"},
+                      {"data": "bukti_bgcek_tanggal"},
                       {"data": "bank_nama"},
                       {"data": "coa_kode"},
                       {"data": "payment_request_piutangdet_jumlah", "className":"text-right"},
@@ -375,7 +377,7 @@
 
             function cetakDataLaporan()
             {
-                window.open('<?php echo base_url();?>Laporan/Mutasi-BG/Print-Data/'+document.getElementsByName("m_cabang_id")[0].value);
+                window.open('<?php echo base_url();?>Laporan/Mutasi-BG/Print-Data/'+document.getElementsByName("m_cabang_id")[0].value+'/'+document.getElementsByName("from_tanggal")[0].value+'/'+document.getElementsByName("to_tanggal")[0].value);
             }
 
             // function cetakDataLaporan2()

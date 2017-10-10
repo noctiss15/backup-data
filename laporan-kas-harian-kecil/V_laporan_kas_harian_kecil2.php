@@ -110,6 +110,7 @@
                                                     <th> No </th>
                                                     <th> No Bukti </th>
                                                     <th> Keterangan </th>
+                                                    <th> Tanggal </th>
                                                     <th> No Perkiraan </th>
                                                     <th> Penerimaan </th>
                                                     <th> Pengeluaran </th>
@@ -239,12 +240,13 @@
                     "serverSide": true,
                     ajax: {
                       url: '<?php echo base_url();?>Laporan/Kas-Harian-Kecil/loadData/',
-                      data: { id_cabang : document.getElementById("m_cabang_id").value }
+                      data: { id_cabang : document.getElementById("m_cabang_id").value, from_tanggal : document.getElementById("from_tanggal").value, to_tanggal : document.getElementById("to_tanggal").value   }
                     },
                     "columns": [
                       {"data": "no","orderable": false,"searchable": false,  "className": "text-center", "width": "5%"},
                       {"data": "bukti_kas_nomor"},
                       {"data": "bukti_kas_catatan"},
+                      {"data": "bukti_kas_tanggal"},
                       {"data": "coa_kode"},
                       {"data": "payment_request_piutangdet_jumlah", "className":"text-right"},
                       {"data": "payment_requestdet_jumlah", "className":"text-right"}
@@ -370,7 +372,7 @@
 
             function cetakDataLaporan()
             {
-                window.open('<?php echo base_url();?>Laporan/Kas-Harian-Kecil/Print-Data/'+document.getElementsByName("m_cabang_id")[0].value);
+                window.open('<?php echo base_url();?>Laporan/Kas-Harian-Kecil/Print-Data/'+document.getElementsByName("m_cabang_id")[0].value+'/'+document.getElementsByName("from_tanggal")[0].value+'/'+document.getElementsByName("to_tanggal")[0].value);
             }
 
             // function cetakDataLaporan2()

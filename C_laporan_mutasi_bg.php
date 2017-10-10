@@ -77,14 +77,14 @@ class C_laporan_mutasi_bg extends MY_Controller {
 		 	'column' => 'cabang_id',
 		 	'param'	 => $this->input->get('id_cabang')
 		 );
-		 //$where['data'][] = array(
-		 //	'column' => 'po_customer_tanggal >=',
-		 //	'param'	 => date('Y/m/d H:i:s', strtotime($this->input->get('from_tanggal')))
-		 //);
-		 //$where['data'][] = array(
-		 //	'column' => 'po_customer_tanggal <=',
-		 //	'param'	 => date('Y/m/d H:i:s', strtotime($this->input->get('to_tanggal')))
-		 //);
+		 $where['data'][] = array(
+		 	'column' => 'bukti_bgcek_tanggal >=',
+		 	'param'	 => date('Y/m/d H:i:s', strtotime($this->input->get('from_tanggal')))
+		 );
+		 $where['data'][] = array(
+		 	'column' => 'bukti_bgcek_tanggal <=',
+		 	'param'	 => date('Y/m/d H:i:s', strtotime($this->input->get('to_tanggal')))
+		 );
 		//WHERE LIKE
 		 $where_like['data'][] = array(
 		 	'column' => 'bukti_bgcek_nomor, bank_nama',
@@ -113,6 +113,7 @@ class C_laporan_mutasi_bg extends MY_Controller {
 							'no' => $no,
 							'bukti_bgcek_nomor' 					=> $val->bukti_bgcek_nomor,
 							'bukti_bgcek_catatan' 					=> $val->bukti_bgcek_catatan,
+							'bukti_bgcek_tanggal' 					=> date('d-m-Y', strtotime($val->bukti_bgcek_tanggal)),
 							'bank_nama' 							=> $val->bank_nama,
 							'coa_kode'					    		=> number_format($val->coa_kode, 2, '.', ','),
 							'payment_request_piutangdet_jumlah'		=> number_format($val->payment_request_piutangdet_jumlah, 2, '.', ','),

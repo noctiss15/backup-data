@@ -77,17 +77,17 @@ class C_laporan_kas_harian_kecil extends MY_Controller {
 		 	'column' => 'cabang_id',
 		 	'param'	 => $this->input->get('id_cabang')
 		 );
-		 //$where['data'][] = array(
-		 //	'column' => 'po_customer_tanggal >=',
-		 //	'param'	 => date('Y/m/d H:i:s', strtotime($this->input->get('from_tanggal')))
-		 //);
-		 //$where['data'][] = array(
-		 //	'column' => 'po_customer_tanggal <=',
-		 //	'param'	 => date('Y/m/d H:i:s', strtotime($this->input->get('to_tanggal')))
-		 //);
+		 $where['data'][] = array(
+		 	'column' => 'bukti_kas_tanggal >=',
+		 	'param'	 => date('Y/m/d H:i:s', strtotime($this->input->get('from_tanggal')))
+		 );
+		 $where['data'][] = array(
+		 	'column' => 'bukti_kas_tanggal <=',
+		 	'param'	 => date('Y/m/d H:i:s', strtotime($this->input->get('to_tanggal')))
+		 );
 		//WHERE LIKE
 		$where_like['data'][] = array(
-		'column' => 'bukti_kas_nomor, coa_kode',
+		'column' => 'bukti_kas_nomor, bukti_kas_tanggal',
 		'param'	 => $this->input->get('search[value]')
 		);
 		//ORDER
@@ -113,6 +113,7 @@ class C_laporan_kas_harian_kecil extends MY_Controller {
 							'no' => $no,
 							'bukti_kas_nomor' 					    => $val->bukti_kas_nomor,
 							'bukti_kas_catatan' 					=> $val->bukti_kas_catatan,
+							'bukti_kas_tanggal' 					=> $val->bukti_kas_tanggal,
 							'coa_kode'					    		=> number_format($val->coa_kode, 2, '.', ','),
 							'payment_request_piutangdet_jumlah'		=> number_format($val->payment_request_piutangdet_jumlah, 2, '.', ','),
 							'payment_requestdet_jumlah'				=> number_format($val->payment_requestdet_jumlah, 2, '.', ','),
@@ -189,7 +190,7 @@ class C_laporan_kas_harian_kecil extends MY_Controller {
 		// 	$name = 'Laporan Rekap Penjualan '.date('d-m-Y', strtotime($awal)).' - '.date('d-m-Y', strtotime($akhir)).'';
 		// }
 		$order['data'][] = array(
-			'column' => 'bukti_kas_nomor',
+			'column' => 'bukti_kas_tanggal',
 			'type'	 => 'ASC'
 		);
 		$query = $this->mod->POCReport($cabang, $order);
